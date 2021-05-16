@@ -1,0 +1,186 @@
+/* =========
+  Video Element 1.0.1
+  A simple Video Element For Squarespace
+  This Code is Licensed by Will-Myers.com
+========== */
+
+/* USER OVERRIDE VARS:
+  --wm-icon-stroke: ;
+  --wm-icon-fill: ;
+========== */
+
+.wm-video-block{
+  --wm-color-theme: white;
+
+  --wm-icon-stroke-width: 3px;
+  --wm-icon-size: 35px;
+}
+.wm-video-block{
+  display:block;
+  position:relative;
+  width:100%;
+  height:auto;
+  box-sizing:border-box;
+}
+.wm-video-block .player{
+  position:relative;
+  display:flex;
+}
+.wm-video-block .controls{
+  display:flex;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+}
+.wm-video-block video{
+  display:block;
+  width:100%;
+}
+.wm-video-block .replay-control {
+  display:none;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+.wm-video-block .volume-control{
+  position:absolute;  
+  display:flex;
+}
+.wm-video-block .play-pause-control{
+  position:absolute;
+  display:block;
+  height:var(--wm-icon-size);
+  width:var(--wm-icon-size);
+}
+.wm-video-block .pause-btn, .wm-video-block .play-btn{
+  display:none;
+}
+.wm-video-block button {
+  cursor:pointer;
+  position:relative;
+  height:var(--wm-icon-size);
+  width:var(--wm-icon-size);
+}
+.wm-video-block .play-btn svg, .wm-video-block .replay-btn svg{
+  left:calc(var(--wm-icon-size) / 18)
+}
+.wm-video-block .replay-btn svg{
+  left: calc(var(--wm-icon-size) / 35);
+  top: calc(var(--wm-icon-size) / 35);
+}
+.wm-video-block svg {
+  position:relative;
+  margin:auto;
+  height:70%;
+  width:70%;
+  stroke: var(--wm-icon-stroke, var(--wm-color-theme, white));
+  fill: var(--wm-icon-fill, var(--wm-color-theme, white));
+}
+.wm-video-block path{ 
+  stroke: var(--wm-icon-stroke, var(--wm-color-theme, white));
+  stroke-width: var(--wm-icon-stroke-width, 2px); 
+}
+.wm-video-block .volume-control input{
+  display:none
+}
+.wm-video-block .volume-control:hover input{
+  display:block
+}
+
+.volume-control input[type=range]{
+  -webkit-appearance: none;
+  background:none;
+}
+.volume-control input[type=range]::-webkit-slider-runnable-track {
+  width:200px;
+  height: 5px;
+  background: var(--wm-icon-stroke, var(--wm-color-theme, white));
+  border: none;
+  border-radius: 3px;
+}
+.volume-control input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: var(--wm-icon-stroke, var(--wm-color-theme, white));
+  margin-top: -4px;
+}
+.volume-control input[type=range]:focus {
+  outline: none;
+}
+.volume-control input[type=range]:focus::-webkit-slider-runnable-track {
+  background: var(--wm-icon-stroke, var(--wm-color-theme, white));
+}
+
+
+
+/*Switch Play / Pause Button*/
+[data-video-state="playing"] .pause-btn{
+  display:block;
+}
+[data-video-state="paused"] .play-btn, [data-video-state="loaded"] .play-btn{
+  display:block;
+}
+[data-video-state="stopped"] .replay-control {
+  display:block;
+}
+[data-video-state="stopped"] .volume-control {
+  display:none;
+}
+[data-video-state="stopped"] .controls,  [data-video-state="paused"] .controls{
+  background:hsla(0,0%,0%,.5)
+}
+[data-video-mute="true"] .volume-btn:after{
+  content:'';
+  position:absolute;
+  display:block;
+  width:2px; 
+  transform:rotate(45deg);
+  transform-origin:bottom left;
+  height:75%;
+  margin:auto;
+  background:hsla(0,100%,50%, .5);
+  left:calc(--var(--wm-icon-size) * 0.7 / 2);
+  top:0;
+}
+
+
+/* ========== 
+Styles 
+========== */
+/*Style 1*/
+.wm-video-block.style-1 button {
+  border: unset;
+  background:hsla(0, 0%, 0%, 0);
+}
+.wm-video-block.style-1 .play-pause-control{
+  right:0px;
+  bottom:0px;
+}
+.wm-video-block.style-1 .volume-control{
+  left:0px;
+  bottom:0px;
+}
+
+/*Style 2*/
+.wm-video-block.style-2 button {
+  border: 1px solid white;
+  backdrop-filter:blur(5px);
+  background:hsla(0, 0%, 0%, .45);
+  border-radius:50%;
+}
+
+.wm-video-block.style-2 .play-pause-control{
+  right:10px;
+  bottom:10px;
+}
+.wm-video-block.style-2 .volume-control{
+  left:10px;
+  bottom:10px;
+}
