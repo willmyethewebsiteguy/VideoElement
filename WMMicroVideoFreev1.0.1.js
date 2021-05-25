@@ -25,14 +25,14 @@
         controls = el.querySelector('.controls'),
 
         playPauseControl = el.querySelector('.play-pause-control'),
-        replayControl = el.querySelector('.replay-control'),
-        volumeControl = el.querySelector('.volume-control'),
+       // replayControl = el.querySelector('.replay-control'),
+       // volumeControl = el.querySelector('.volume-control'),
 
         playBtn = el.querySelector('.play-btn'),
         pauseBtn = el.querySelector('.pause-btn'),
-        replayBtn = el.querySelector('.replay-btn'),
-        volumeBtn = volumeControl.querySelector('.volume-btn'),
-        volumeInput = volumeControl.querySelector('input');
+       // replayBtn = el.querySelector('.replay-btn'),
+       // volumeBtn = volumeControl.querySelector('.volume-btn'),
+       // volumeInput = volumeControl.querySelector('input');
     video.togglePlay = () => {
       if (video.paused) {
         video.play(); 
@@ -42,11 +42,11 @@
         el.setAttribute('data-video-state', 'paused');
       }
     }
-    video.toggleVolume = () => {
+    /*video.toggleVolume = () => {
       video.muted = !video.muted;
       video.volume = volumeInput.value / 100;
       video.setVolumeState();
-    }
+    }*/
     video.playVideo = () =>{
       video.play(); 
       el.setAttribute('data-video-state', 'playing');
@@ -65,7 +65,7 @@
       e.stopPropagation();
       video.togglePlay();
     })
-    replayControl.addEventListener('click', function(e){
+   /* replayControl.addEventListener('click', function(e){
       e.preventDefault();
       e.stopPropagation();
       video.playVideo()
@@ -77,7 +77,7 @@
       video.muted = false;
       video.volume = volumeInput.value / 100;
       video.checkIfMute();
-    });
+    });*/
     function isElementInViewport (elem) {
       var rect = elem.getBoundingClientRect();
       return (
@@ -132,13 +132,13 @@
 
     /*Set Volume*/
     video.volume = videoObj.volume;
-    volumeInput.value = videoObj.volume * 100;
+   // volumeInput.value = videoObj.volume * 100;
     if (videoObj.volume > 0) {
       video.muted = false;
     }
 
     /*Set PlayBackRate*/
-    video.playbackRate = videoObj.playbackRate;
+    // video.playbackRate = videoObj.playbackRate;
 
     /*Set Video Loop*/
     if (videoObj.loop == 'true') {
@@ -155,8 +155,8 @@
   function VideoElement(el, params){
     let defaultPlaySVGStr = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"> <title>Play Video</title><path data-name="layer1" stroke-miterlimit="10" stroke-width="2" d="M6 2l52 30L6 62V2z" stroke-linejoin="round" stroke-linecap="round"></path></svg>',
         defaultPauseSVGStr = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Pause Button</title><path data-name="layer2" stroke-miterlimit="10" stroke-width="2" d="M13 4h12v56H13z" stroke-linejoin="round" stroke-linecap="round"></path><path data-name="layer1" stroke-miterlimit="10" stroke-width="2" d="M41 4h12v56H41z" stroke-linejoin="round" stroke-linecap="round"></path></svg>',
-        defaultReplaySVGStr = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title" aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Replay</title><desc>Replay the Video</desc><path data-name="layer2" d="M53.832 34.947a26.016 26.016 0 1 0-7.45 15.432" fill="none" stroke="#202020" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round"></path><path data-name="layer1" fill="none" stroke="#202020" stroke-miterlimit="10" stroke-width="2" d="M62 23l-8.168 11.947L43.014 25" stroke-linejoin="round" stroke-linecap="round"></path></svg>',
-        defaultVolumeSVGStr = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Volume Control</title><path data-name="layer2"  d="M40.2 21.8a12 12 0 0 1 0 20.5M46 16a20 20 0 0 1 0 32m5.7-37.7a28 28 0 0 1 .1 43.3" stroke-miterlimit="10"  stroke-linejoin="round" stroke-linecap="round" style="fill:none"></path><path data-name="layer1" d="M34 6L16 24H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12l18 18z" stroke-miterlimit="10"  stroke-linejoin="round" stroke-linecap="round"></path></svg>',
+        //defaultReplaySVGStr = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title" aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Replay</title><desc>Replay the Video</desc><path data-name="layer2" d="M53.832 34.947a26.016 26.016 0 1 0-7.45 15.432" fill="none" stroke="#202020" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round"></path><path data-name="layer1" fill="none" stroke="#202020" stroke-miterlimit="10" stroke-width="2" d="M62 23l-8.168 11.947L43.014 25" stroke-linejoin="round" stroke-linecap="round"></path></svg>',
+        //defaultVolumeSVGStr = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Volume Control</title><path data-name="layer2"  d="M40.2 21.8a12 12 0 0 1 0 20.5M46 16a20 20 0 0 1 0 32m5.7-37.7a28 28 0 0 1 .1 43.3" stroke-miterlimit="10"  stroke-linejoin="round" stroke-linecap="round" style="fill:none"></path><path data-name="layer1" d="M34 6L16 24H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12l18 18z" stroke-miterlimit="10"  stroke-linejoin="round" stroke-linecap="round"></path></svg>',
         videoObj = {
           source: params.source || 'url-of-how-to-edit.mp4', 
           style: params.style || 1
@@ -168,14 +168,14 @@
         controls = document.createElement('controls'),
 
         playPauseControl = document.createElement('div'),
-        volumeControl = document.createElement('div'),
-        replayControl = document.createElement('div'),
+   //     volumeControl = document.createElement('div'),
+   //     replayControl = document.createElement('div'),
 
         playBtn = document.createElement('button'),
         pauseBtn = document.createElement('button'),
-        replayBtn = document.createElement('button'),
-        volumeBtn = document.createElement('button'),
-        volumeInput = document.createElement('input');
+   //     replayBtn = document.createElement('button'),
+   //     volumeBtn = document.createElement('button'),
+   //     volumeInput = document.createElement('input');
 
     /*Add Player El*/
     el.append(player);
@@ -190,20 +190,20 @@
 
     /*Add Controls El*/
     controls.append(playPauseControl);
-    controls.append(replayControl);
-    controls.append(volumeControl);
+    //controls.append(replayControl);
+   // controls.append(volumeControl);
 
     /*Add Buttons El*/
     playPauseControl.append(playBtn);
     playPauseControl.append(pauseBtn);
-    replayControl.append(replayBtn);
-    volumeControl.append(volumeBtn);
-    volumeControl.append(volumeInput);
+    //replayControl.append(replayBtn);
+   // volumeControl.append(volumeBtn);
+   // volumeControl.append(volumeInput);
 
     playBtn.innerHTML = defaultPlaySVGStr;
     pauseBtn.innerHTML = defaultPauseSVGStr;
-    replayBtn.innerHTML = defaultReplaySVGStr;
-    volumeBtn.innerHTML = defaultVolumeSVGStr;
+   // replayBtn.innerHTML = defaultReplaySVGStr;
+   // volumeBtn.innerHTML = defaultVolumeSVGStr;
 
     /*Adding Classes*/
     el.classList.add('wm-video-block', 'style-' + videoObj.style);
@@ -211,19 +211,19 @@
 
     controls.classList.add('controls');
     playPauseControl.classList.add('play-pause-control');
-    replayControl.classList.add('replay-control');
-    volumeControl.classList.add('volume-control');
+   // replayControl.classList.add('replay-control');
+   // volumeControl.classList.add('volume-control');
 
     playBtn.classList.add('play-btn');
     pauseBtn.classList.add('pause-btn');
-    replayBtn.classList.add('replay-btn');
-    volumeBtn.classList.add('volume-btn');
+   // replayBtn.classList.add('replay-btn');
+   // volumeBtn.classList.add('volume-btn');
 
-    volumeInput.id = 'vol-control';
-    volumeInput.type = 'range';
-    volumeInput.min = '0';
-    volumeInput.max = '100';
-    volumeInput.step = '1';
+   // volumeInput.id = 'vol-control';
+   // volumeInput.type = 'range';
+   //  volumeInput.min = '0';
+   // volumeInput.max = '100';
+   // volumeInput.step = '1';
 
     function strToHtml(str) {
       console.log(new DOMParser().parseFromString(str, "text/xml").firstChild.html);
@@ -236,12 +236,12 @@
   vids.forEach(vid => {
     let params = {
       source: vid.dataset.source || null,
-      style: vid.dataset.style || 1,
-      autoPlay: vid.dataset.autoPlay || null,
-      loop: vid.dataset.loop || null,
-      playbackRate: vid.dataset.playbackRate || null,
+      style: 1,
+      autoPlay: 'false',
+      //loop: vid.dataset.loop || null,
+      //playbackRate: vid.dataset.playbackRate || null,
       volume: vid.dataset.volume || null,
-      tapPause: vid.dataset.tapPause || null
+      //tapPause: vid.dataset.tapPause || null
     }
     let source = vid.dataset.source,
         style = vid.dataset.style,
