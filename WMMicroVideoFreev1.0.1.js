@@ -29,7 +29,7 @@
        // volumeControl = el.querySelector('.volume-control'),
 
         playBtn = el.querySelector('.play-btn'),
-        pauseBtn = el.querySelector('.pause-btn'),
+        pauseBtn = el.querySelector('.pause-btn');
        // replayBtn = el.querySelector('.replay-btn'),
        // volumeBtn = volumeControl.querySelector('.volume-btn'),
        // volumeInput = volumeControl.querySelector('input');
@@ -172,7 +172,7 @@
    //     replayControl = document.createElement('div'),
 
         playBtn = document.createElement('button'),
-        pauseBtn = document.createElement('button'),
+        pauseBtn = document.createElement('button');
    //     replayBtn = document.createElement('button'),
    //     volumeBtn = document.createElement('button'),
    //     volumeInput = document.createElement('input');
