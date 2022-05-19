@@ -310,7 +310,7 @@
       });
      
       if(!document.querySelector('#wm-video-element-css')){
-        addCSSFileToHeader('https://assets.codepen.io/3198845/WMMicroVideo210316v1.1.2.css');
+        addCSSFileToHeader('https://cdn.jsdelivr.net/gh/willmyethewebsiteguy/VideoElement@1.2.002/styles.min.css');
         function addCSSFileToHeader(url) {
           let head = document.getElementsByTagName('head')[0],
               link = document.createElement('link');
