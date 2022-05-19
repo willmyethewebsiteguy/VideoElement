@@ -1,0 +1,256 @@
+/* =========
+  Video Element 1.2
+  A simple Video Element For Squarespace
+  This Code is Licensed by Will-Myers.com
+========== */
+.wm-video-block{
+  --icon-background-color: #999;
+  --icon-padding: 8px;
+  --icon-margin: 4px;
+  --icon-color: white;
+  --icon-fill: white;
+  --icon-width: 4px;
+  --icon-size: 10px;
+  --aspect-ratio: 9/16;
+  --icon-border-radius: 50%;
+  --icon-border-width: 0px;
+  --icon-background-blur: 0px;
+  --icon-drop-shadow: none;
+  --transition-speed: .2s;
+  --playhead-indicator: white;
+  --playhead-indicator-height:4px;
+  --playhead: #333;
+
+  display:block;
+  position:relative;
+  width:100%;
+  height:auto;
+  box-sizing:border-box;
+  opacity:0;
+  transition:opacity var(--transition-speed) ease;
+  will-change:opacity;
+  background-size: cover;
+}
+.wm-video-block.video-loaded{
+  opacity:1 !important;
+}
+.wm-video-block .player{
+  position:relative;
+  display:flex;
+  padding-top:calc(var(--aspect-ratio) * 100%);
+  height:0px;
+  overflow:hidden;
+}
+.wm-video-block video{
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:auto;
+}
+.wm-video-block .controls {
+  position:absolute;
+  display:grid;
+  grid-template-columns:minmax(0px, auto) 1fr minmax(0px, auto);
+  grid-template-rows:minmax(0px, auto) 1fr minmax(0px, auto) auto;
+  place-items:center;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+}
+
+/*Video Controls*/
+.wm-video-block .control{
+  cursor:pointer;
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  padding:8px;
+  transition:opacity var(--transition-speed) ease,
+    transform var(--transition-speed) ease;;
+}
+.wm-video-block .volume-control{
+  grid-column: 1;
+  grid-row: 3;
+  opacity:0;
+  background-color: var(--icon-background-color);
+  border-radius: var(--icon-border-radius);
+  margin: var(--icon-margin);
+  padding: var(--icon-padding);
+  backdrop-filter: blur(var(--icon-background-blur));
+}
+.wm-video-block .play-pause-control {
+  grid-column: 3;
+  grid-row: 3;
+  background-color: var(--icon-background-color);
+  border-radius: var(--icon-border-radius);
+  margin: var(--icon-margin);
+  padding: var(--icon-padding);
+  backdrop-filter: blur(var(--icon-background-blur));
+}
+.wm-video-block .replay-control {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  background-color: var(--icon-background-color);
+  border-radius: var(--icon-border-radius);
+  margin: var(--icon-margin);
+  padding: var(--icon-padding);
+  backdrop-filter: blur(var(--icon-background-blur));
+}
+.wm-video-block .full-screen-control {
+  grid-column: 3;
+  grid-row: 1;
+  opacity:0;
+  background-color: var(--icon-background-color);
+  border-radius: var(--icon-border-radius);
+  margin: var(--icon-margin);
+  padding: var(--icon-padding);
+  backdrop-filter: blur(var(--icon-background-blur));
+}
+.wm-video-block .playhead-control{
+  opacity:0;
+  cursor:auto;
+  width:100%;
+  box-sizing:border-box;
+  grid-column: 1 / 4;
+  grid-row: 4;
+  padding: 0px;
+  max-height:0px;
+  justify-self:start;
+  transition: max-height .2s ease;
+  will-change: max-height;
+}
+.playhead-control .playhead-range{
+  cursor:pointer;
+  width:100%;
+  height: 100%;
+  position:relative;
+}
+.playhead-range .indicator {
+  display:block;
+  height:100%;
+  visibility:visible;
+  background: var(--playhead-indicator);
+}
+
+.playhead-control .playhead-range{
+  background: var(--playhead);
+  height: 4px;
+}
+.wm-video-block .replay-control:active {
+  transform: translate(-50%, -50%) scale(1);  
+}
+.wm-video-block .volume-control:active,
+.wm-video-block .full-screen-control:active,
+.wm-video-block .play-pause-control:active {
+  transform: scale(.98);
+}
+
+.wm-video-block svg {
+  position:relative;
+  filter: drop-shadow(--icon-drop-shadow);
+  height:var(--icon-size, 15px);
+  width:var(--icon-size, 15px);
+  stroke: var(--icon-color);
+  fill: var(--icon-fill);
+}
+@media(max-width:699px){
+  .wm-video-block svg {
+    height:40%;
+  }
+}
+.wm-video-block path{ 
+  stroke: var(--icon-color);
+  stroke-width: var(--icon-width); 
+}
+.wm-video-block .volume-control input{
+  padding: 0rem .4rem;
+  margin: 0 .4rem;
+  display:none;
+}
+.wm-video-block .volume-control:hover input{
+  display:block;
+}
+/*Video On Hover*/
+.wm-video-block:hover .volume-control, .wm-video-block:hover .play-pause-control, .wm-video-block:hover .full-screen-control, .wm-video-block:hover .playhead-control {
+  opacity:1;
+}
+.wm-video-block:hover .playhead-control {
+  max-height: var(--playhead-indicator-height);
+}
+
+/*Backend Sizing*/
+.sqs-edit-mode-active [data-wm-plugin="video"]::after {
+  content: '';
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  padding-top: 56.25%;
+  border: 1px solid currentColor;
+}
+.sqs-edit-mode-active [data-wm-plugin="video"]::before {
+  content: 'Custom Video Block';
+  position:absolute;
+  top:0;
+  left:0;
+  padding:4px 10px;
+  font-size:.7rem;
+  background:black;
+  color:white;
+}
+.sqs-edit-mode-active [data-wm-plugin="video"] .player {
+  display:none;
+}
+
+
+/*===== State Changes =====*/
+/*Pause Button*/
+.wm-video-block .pause-btn, 
+.wm-video-block .play-btn{
+  display:none;
+}
+[data-video-state="playing"] .pause-btn{
+  display:flex;
+}
+
+/*Play Button*/
+[data-video-state="paused"] .play-btn, [data-video-state="loaded"] .play-btn, [data-video-state="stopped"] .play-btn{
+  display:flex;
+  opacity:1;
+}
+
+/*Replay Button*/
+[data-video-state="stopped"] .replay-control{
+  display:flex;
+}
+
+/*Volume Control*/
+
+/*Controls Background*/
+[data-video-state="playing"] .controls, [data-video-state="paused"] .controls {
+  background-image:unset !important;
+}
+
+/*Mute Slash*/
+.wm-video-block [data-name="mute-layer"]{
+  opacity: 0;
+}
+[data-video-mute="true"] .volume-control [data-name="mute-layer"]{
+  opacity: 1;
+}
+
+/*Safari Header Issue*/
+:-webkit-full-screen-ancestor #header{
+  z-index:0;
+}
