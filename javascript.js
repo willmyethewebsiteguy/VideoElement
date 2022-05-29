@@ -310,7 +310,7 @@
       });
      
       if(!document.querySelector('#wm-video-element-css')){
-        addCSSFileToHeader('https://cdn.jsdelivr.net/gh/willmyethewebsiteguy/VideoElement@1.2.002/styles.min.css');
+        addCSSFileToHeader('https://cdn.jsdelivr.net/gh/willmyethewebsiteguy/VideoElement@1.2.004/styles.min.css');
         function addCSSFileToHeader(url) {
           let head = document.getElementsByTagName('head')[0],
               link = document.createElement('link');
