@@ -177,12 +177,20 @@
         observer.observe(video) ;
       }
     } else if (videoObj.autoPlay == 'onLoad') {
-      setTimeout(function() {
+      video.addEventListener('canplay', (event) => {
         video.muted = true;
-        video.setVolumeState();
-        video.playVideo();
-        el.setAttribute('data-video-state', 'playing');
-      }, 10);
+        // Show loading animation.
+        var playPromise = video.play();
+        if (playPromise == undefined) return;
+        playPromise.then(_ => {
+          video.setVolumeState();
+          video.playVideo();
+          el.setAttribute('data-video-state', 'playing');
+        }).catch(error => {
+          video.pauseVideo();
+          el.setAttribute('data-video-state', 'paused');
+        });
+      });
     }
 
     /*Set PlayBackRate*/
@@ -310,7 +318,7 @@
       });
      
       if(!document.querySelector('#wm-video-element-css')){
-        addCSSFileToHeader('https://cdn.jsdelivr.net/gh/willmyethewebsiteguy/VideoElement@1.2.004/styles.min.css');
+        addCSSFileToHeader('https://cdn.jsdelivr.net/gh/willmyethewebsiteguy/VideoElement@1.2.005/styles.min.css');
         function addCSSFileToHeader(url) {
           let head = document.getElementsByTagName('head')[0],
               link = document.createElement('link');
